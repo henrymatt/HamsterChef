@@ -24,8 +24,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        float hInput = Input.GetAxis("Horizontal");
-        float vInput = Input.GetAxis("Vertical");
+        float hInput = Input.GetAxisRaw("Horizontal");
+        float vInput = Input.GetAxisRaw("Vertical");
 
         bool isInput = (hInput != 0 || vInput != 0);
 
