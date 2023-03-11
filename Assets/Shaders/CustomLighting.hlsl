@@ -35,12 +35,9 @@ float3 CalculateCustomLighting(CustomLightingData d) {
 	return clamp(d.albedo * intensity, 0, 1);
 #else
 	Light mainLight = GetMainLight();
-
 	float color = 0;
-
 	color += CustomLightHandling(d, mainLight);
 
-#ifndef SHADERGRAPH_PREVIEW
 	int pixelLightCount = GetAdditionalLightsCount();
 	for (int i = 0; i < pixelLightCount; i++)
 	{
@@ -48,7 +45,6 @@ float3 CalculateCustomLighting(CustomLightingData d) {
 
 		color += CustomLightHandling(d, light);
 	}
-#endif
 
 	color = clamp(color, max(max(mainLight.color.r, mainLight.color.g), mainLight.color.b) * d.globalLighting, 1);
 
