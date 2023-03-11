@@ -12,4 +12,10 @@ public class EventHandler
     public static event Action DidHideEvent;
     public static void CallDidHideEvent() => DidHideEvent?.Invoke();
 
+    public static event Action DidCreatureBeginChasingEvent;
+    public static void CallDidCreatureBeginChasingEvent() => DidCreatureBeginChasingEvent?.Invoke();
+
+    public static event Action DidCreatureStopChasingEvent;
+    public static void CallDidCreatureStopChasingEvent() => DidCreatureStopChasingEvent?.Invoke();
+
 }

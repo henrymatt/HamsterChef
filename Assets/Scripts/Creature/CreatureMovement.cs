@@ -49,6 +49,10 @@ public class CreatureMovement : MonoBehaviour
                 if (hit.collider.CompareTag("Player"))
                 {
                     navMeshAgent.SetDestination(player.transform.position);
+                    EventHandler.CallDidCreatureBeginChasingEvent();
+                    
+                    // If you define when a creature stops chasing, run this line when that happens
+                    // EventHandler.CallDidCreatureStopChasingEvent();
                 }
             }
         }
