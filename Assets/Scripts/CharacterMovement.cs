@@ -17,6 +17,13 @@ public class CharacterMovement : MonoBehaviour
     private float _lastMoveMagnitude;
     private float _currentMoveMagnitude;
     [SerializeField] private float _moveAnimationTransitionSpeed = 8f;
+    private bool _canMove = true;
+
+
+    public void DisableMovement() => _canMove = false;
+    public void EnableMovement() => _canMove = true;
+
+    public bool CanMove() => _canMove;
     
     private void Start()
     {
@@ -30,7 +37,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
+        if (_canMove)
+        {
+            HandleMovement();
+        }
     }
 
     private void LateUpdate()
