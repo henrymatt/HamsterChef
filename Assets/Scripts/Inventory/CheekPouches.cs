@@ -40,6 +40,11 @@ public class CheekPouches : MonoBehaviour
         return _inventory.GetInventory();
     }
 
+    public int GetCurrentInventoryAmount()
+    {
+        return _inventory.GetInventory().Count;
+    }
+
     private void HighlightInteractableItem()
     {
         List<GameObject> foundInteractablesGOs = GetInteractableGameObjectsInPickupArea();
