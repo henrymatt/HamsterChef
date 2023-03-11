@@ -20,9 +20,13 @@ public class CheekPouches : MonoBehaviour
 
     private void Update()
     {
-        HighlightInteractableItem();
-        CheckForInteract();
-        CheckForSpitUp();
+        if (GameManager.Instance.CharacterMovement.CanMove())
+        {
+            HighlightInteractableItem();
+            CheckForInteract();
+            CheckForSpitUp();
+        }
+        
         CheckForInventoryDebug();
     }
     

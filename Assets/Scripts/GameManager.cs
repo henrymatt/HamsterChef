@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField] private CheekPouches _characterCheekPouches;
+    [SerializeField] private CharacterHiding _characterHiding;
+    [SerializeField] private CharacterMovement _characterMovement;
     
     private void Start()
     {
@@ -13,4 +15,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Item"));
     }
     public CheekPouches CharacterCheekPouches => _characterCheekPouches;
+    public CharacterHiding CharacterHiding => _characterHiding;
+    public CharacterMovement CharacterMovement => _characterMovement;
 }
