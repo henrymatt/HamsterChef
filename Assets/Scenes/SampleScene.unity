@@ -2297,7 +2297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30464
+  m_Name: pb_Mesh27416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2862,6 +2862,18 @@ PrefabInstance:
       propertyPath: _itemParent
       value: 
       objectReference: {fileID: 1094799243}
+    - target: {fileID: 1799450263, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+      propertyPath: _outlineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a30d09e0a829ff48b45299b53ad9302, type: 2}
+    - target: {fileID: 3443605677605956311, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443605677605956311, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a30d09e0a829ff48b45299b53ad9302, type: 2}
     - target: {fileID: 8119307395559277825, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
       propertyPath: m_Name
       value: Character
