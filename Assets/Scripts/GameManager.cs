@@ -10,6 +10,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Item"));
     }
     public CheekPouches CharacterCheekPouches => _characterCheekPouches;
 }

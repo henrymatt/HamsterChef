@@ -13,10 +13,16 @@ public class Inventory
         if (_inventory.Count >= MAXINVENTORYSIZE) return false;
         
         _inventory.Push(itemToAdd);
+        EventHandler.CallDidInventoryChangeEvent();
         return true;
     }
 
-    public Item Pop() => _inventory.Count <= 0 ? null : _inventory.Pop();
+    public Item Pop()
+    {
+        Item poppedItem = _inventory.Count <= 0 ? null : _inventory.Pop();
+        EventHandler.CallDidInventoryChangeEvent();
+        return poppedItem;
+    }
 
     public string Print()
     {
@@ -30,5 +36,6 @@ public class Inventory
     }
 
     public bool HasItems() => _inventory.Count > 0;
+    public Stack<Item> GetInventory() => _inventory;
 
 }
