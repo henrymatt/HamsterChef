@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class CheekPouches : MonoBehaviour
 {
@@ -90,8 +91,10 @@ public class CheekPouches : MonoBehaviour
     private void SpitUpItem()
     {
         Item itemToSpitUp = _inventory.Pop();
-        GameObject.Instantiate(itemToSpitUp.GetGameObject(), _pickupArea.gameObject.transform.position, Quaternion.identity,
+        GameObject itemGO = GameObject.Instantiate(itemToSpitUp.GetGameObject(), _pickupArea.gameObject.transform.position, Quaternion.identity,
             _itemParent);
+        Rigidbody itemRigidBody = itemGO.GetComponent<Rigidbody>();
+        itemRigidBody.AddForce(GetComponent<CharacterMovement>().GetCharacterForwardVector() * 4f, ForceMode.Impulse);
     }
     
     private void CheckForInventoryDebug()

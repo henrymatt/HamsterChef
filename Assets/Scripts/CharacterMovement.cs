@@ -40,4 +40,6 @@ public class CharacterMovement : MonoBehaviour
         Quaternion newRotation = Quaternion.LookRotation(movePosition);
         _characterMesh.transform.rotation = Quaternion.Slerp(_characterMesh.transform.rotation, newRotation, _rotateSpeed * Time.deltaTime);
     }
+
+    public Vector3 GetCharacterForwardVector() =>  _characterMesh.transform.forward;
 }

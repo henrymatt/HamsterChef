@@ -2757,6 +2757,10 @@ PrefabInstance:
       propertyPath: m_ReverseArrangement
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1121549932288399213, guid: a1ecc5b91717e9d45a8b5b198d80fe15, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3800073684619182410, guid: a1ecc5b91717e9d45a8b5b198d80fe15, type: 3}
       propertyPath: m_Name
       value: ItemStack
