@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
         _characterController.Move(movePosition * Time.deltaTime);
 
         // Store current movement magnitude to send to animator
-        _currentMoveMagnitude = movePosition.magnitude;
+        _currentMoveMagnitude = movePosition.magnitude / _moveSpeed;
 
         if (!isInput) return;
         transform.rotation = Quaternion.Euler(0f, _camera.transform.rotation.eulerAngles.y, 0f);
