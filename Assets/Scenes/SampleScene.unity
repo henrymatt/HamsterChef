@@ -2862,6 +2862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 8119307395559277825, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8119307395559277827, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
       propertyPath: m_RootOrder
       value: 3
