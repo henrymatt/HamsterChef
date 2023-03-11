@@ -26,6 +26,11 @@ public class CheekPouches : MonoBehaviour
         return _inventory.Add(itemToAdd);
     }
 
+    public Stack<Item> GetCurrentInventory()
+    {
+        return _inventory.GetInventory();
+    }
+
     private void CheckForInteract()
     {
         if (Input.GetButtonDown("Fire1") == false) return;
