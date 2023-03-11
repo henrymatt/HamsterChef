@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 8119307395559277852}
   - component: {fileID: 1799450263}
   - component: {fileID: 1124894940}
+  - component: {fileID: 1124894943}
   m_Layer: 3
   m_Name: CharacterRig
   m_TagString: Player
@@ -276,6 +277,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f34a9183b4b46679f39cbe983d2b8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxInventoryToHide: 3
+--- !u!136 &1124894943
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119307395559277825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.19123915
+  m_Height: 0.83717525
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5597636, z: 0.089569}
 --- !u!1 &8119307395849165359
 GameObject:
   m_ObjectHideFlags: 0
