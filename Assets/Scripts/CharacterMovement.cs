@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _rotateSpeed = 1f;
+    [SerializeField] private float _walkSpeedPercentage = 0.3f;
 
     // Animator fields
     private float _lastMoveMagnitude;
@@ -39,12 +40,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement()
     {
+        float maxSpeed = Input.GetButton("Fire3") ? _walkSpeedPercentage : 1.0f;
+        
         float hInput = Input.GetAxisRaw("Horizontal");
         float vInput = Input.GetAxisRaw("Vertical");
 
         bool isInput = (hInput != 0 || vInput != 0);
 
-        Vector3 moveDirection = ((transform.forward * vInput) + (transform.right * hInput)).normalized;
+        Vector3 moveDirection = ((transform.forward * vInput) + (transform.right * hInput));
+        if (moveDirection.magnitude > maxSpeed) moveDirection = moveDirection.normalized * maxSpeed;
         moveDirection *= _moveSpeed;
         Vector3 movePosition = new Vector3(moveDirection.x, 0f, moveDirection.z);
         
