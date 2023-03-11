@@ -7,19 +7,34 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController _characterController;
     private Camera _camera;
     [SerializeField] private GameObject _characterMesh;
+    private Animator _animator;
 
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _rotateSpeed = 1f;
+
+    // Animator fields
+    private float _lastMoveMagnitude;
+    private float _currentMoveMagnitude;
+    [SerializeField] private float _moveAnimationTransitionSpeed = 8f;
     
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _camera = Camera.main;
+        if (_characterMesh != null)
+        {
+            _animator = _characterMesh.GetComponentInChildren<Animator>();
+        }
     }
 
     private void Update()
     {
         HandleMovement();
+    }
+
+    private void LateUpdate()
+    {
+        UpdateAnimator();
     }
 
     private void HandleMovement()
@@ -35,11 +50,22 @@ public class CharacterMovement : MonoBehaviour
         
         _characterController.Move(movePosition * Time.deltaTime);
 
+        // Store current movement magnitude to send to animator
+        _currentMoveMagnitude = new Vector2(hInput, vInput).sqrMagnitude;
+
         if (!isInput) return;
         transform.rotation = Quaternion.Euler(0f, _camera.transform.rotation.eulerAngles.y, 0f);
         Quaternion newRotation = Quaternion.LookRotation(movePosition);
         _characterMesh.transform.rotation = Quaternion.Slerp(_characterMesh.transform.rotation, newRotation, _rotateSpeed * Time.deltaTime);
     }
 
+    private void UpdateAnimator() {
+        if (_animator == null) return;
+        _currentMoveMagnitude = Mathf.MoveTowards(_lastMoveMagnitude, _currentMoveMagnitude, _moveAnimationTransitionSpeed * Time.deltaTime);
+        _animator.SetFloat("MoveMagnitude", _currentMoveMagnitude);
+        _lastMoveMagnitude = _currentMoveMagnitude;
+    }
+
     public Vector3 GetCharacterForwardVector() =>  _characterMesh.transform.forward;
+
 }

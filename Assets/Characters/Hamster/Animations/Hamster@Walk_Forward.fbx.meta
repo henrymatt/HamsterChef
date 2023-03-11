@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbcc0bd683c167944be8a4522d53482d
+guid: 4765018e29cf7dd46b650e43868d0270
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Walk_Forward
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 1
-      lastFrame: 85
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
