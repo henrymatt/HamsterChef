@@ -188,9 +188,10 @@ GameObject:
   - component: {fileID: 8119307395559277826}
   - component: {fileID: 8119307395559277852}
   - component: {fileID: 1799450263}
-  m_Layer: 0
+  - component: {fileID: 1124894940}
+  m_Layer: 3
   m_Name: CharacterRig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +247,8 @@ MonoBehaviour:
   _characterMesh: {fileID: 8119307394436652936}
   _moveSpeed: 5
   _rotateSpeed: 12
+  _walkSpeedPercentage: 0.3
+  _moveAnimationTransitionSpeed: 8
 --- !u!114 &1799450263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +263,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickupArea: {fileID: 1568428164}
   _itemParent: {fileID: 0}
+  _outlineMaterial: {fileID: 2100000, guid: 6a30d09e0a829ff48b45299b53ad9302, type: 2}
+--- !u!114 &1124894940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119307395559277825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f34a9183b4b46679f39cbe983d2b8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8119307395849165359
 GameObject:
   m_ObjectHideFlags: 0
