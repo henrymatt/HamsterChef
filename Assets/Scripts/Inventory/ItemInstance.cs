@@ -10,6 +10,7 @@ public class ItemInstance : MonoBehaviour, IInteractable
     {
         if (GameManager.Instance.CharacterCheekPouches.AttemptAddItem(new Item(_soItem)))
         {
+            EventHandler.CallDidPickUpIngredientEvent();
             Destroy(gameObject);
         }
     }

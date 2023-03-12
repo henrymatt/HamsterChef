@@ -43,6 +43,15 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         EventHandler.DidHideEvent -= StopBeingChasedClip;
     }
 
+    public void PlayCharacterVoice(AudioClip clip)
+    {
+        if (_nonDiageticAudioSource.isPlaying) return;
+        _nonDiageticAudioSource.clip = clip;
+        _nonDiageticAudioSource.loop = false;
+        _nonDiageticAudioSource.pitch = Random.Range(0.7f, 1.3f);
+        _nonDiageticAudioSource.Play();
+    }
+
     private void PlayCreatureChaseScreech()
     {
         if (_creatureAudioSource.isPlaying || _didScreechOnceDuringThisChase) return;

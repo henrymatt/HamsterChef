@@ -21,7 +21,10 @@ public class CharacterMovement : MonoBehaviour
 
     public float volume = 1f;
 
-    public void DisableMovement() => _canMove = false;
+    public void DisableMovement()
+    {
+        _canMove = false;
+    }
     public void EnableMovement() => _canMove = true;
 
     public bool CanMove() => _canMove;
