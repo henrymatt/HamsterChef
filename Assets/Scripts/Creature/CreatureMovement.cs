@@ -24,6 +24,9 @@ public class CreatureMovement : MonoBehaviour
 
     private bool canSeePlayer = false;
 
+    private AudioBroadcastListener listener;
+    private BroadcastedSound soundBeingInvesitgated;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class CreatureMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = patrolSpeed;
+        listener = GetComponent<AudioBroadcastListener>();
     }
 
     // Update is called once per frame
@@ -41,36 +45,25 @@ public class CreatureMovement : MonoBehaviour
             navMeshAgent.SetDestination(patrolLocations[Random.Range(0, patrolLocations.Length - 1)].transform.position);
             patrolTimer = findPatrolLocationFrequency;
         }
-        if (AudioBroadcast.Instance.broadcastedSounds.Count > 0)
+
+        BroadcastedSound closestSound = listener.GetClosestSound();
+        if (closestSound != null)
         {
-            BroadcastedSound closestSound = null;
-            float closestSoundDistance = 0f;
-            foreach (BroadcastedSound sound in AudioBroadcast.Instance.broadcastedSounds)
+            if (soundBeingInvesitgated == null)
             {
-                float soundDistance = Vector3.Distance(sound.origin, transform.position) * (1/sound.volume);
-                if (soundDistance <= hearingDistance)
-                {
-                    if (closestSound == null)
-                    {
-                        closestSound = sound;
-                        closestSoundDistance = soundDistance;
-                    }
-                    else
-                    {
-
-                        if (soundDistance < closestSoundDistance)
-                        {
-                            closestSound = sound;
-                            closestSoundDistance = soundDistance;
-                        }
-                    }
-                }
-            }
-
-            if (closestSound != null)
-            {
+                soundBeingInvesitgated = closestSound;
                 creatureState = CreatureState.investigating;
-                navMeshAgent.SetDestination(closestSound.origin);
+                navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
+            }
+            else if (soundBeingInvesitgated.GetSoundImportance(transform.position) < closestSound.GetSoundImportance(transform.position))
+            {
+                soundBeingInvesitgated = closestSound;
+                creatureState = CreatureState.investigating;
+                navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
+            }
+            else
+            {
+                //nothing
             }
         }
 
@@ -85,6 +78,10 @@ public class CreatureMovement : MonoBehaviour
                 EventHandler.CallDidCreatureStopChasingEvent();
 
                 creatureState = CreatureState.patrolling;
+            }
+            else if (creatureState == CreatureState.investigating)
+            {
+                soundBeingInvesitgated = null;
             }
         }
     }

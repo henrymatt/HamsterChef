@@ -24,5 +24,4 @@ public class EventHandler
     public static event Action<DialogueSceneSO, bool> ShouldPresentDialogueEvent;
     public static void CallShouldPresentDialogueEvent(DialogueSceneSO dialogueToDisplay, bool shouldPause) =>
         ShouldPresentDialogueEvent?.Invoke(dialogueToDisplay, shouldPause);
-
 }
