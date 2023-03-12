@@ -5,6 +5,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
     private AudioSource _sfxAudioSource;
     [SerializeField] private AudioClip _beingChasedClip;
+    [SerializeField] private AudioListener _playerListener;
+    [SerializeField] private AudioSource _creatureAudioSource;
 
     private void Start()
     {

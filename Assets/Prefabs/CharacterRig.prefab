@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 1799450263}
   - component: {fileID: 1124894940}
   - component: {fileID: 1124894943}
+  - component: {fileID: 1415991148915241522}
   m_Layer: 3
   m_Name: CharacterRig
   m_TagString: Player
@@ -250,6 +251,7 @@ MonoBehaviour:
   _rotateSpeed: 12
   _walkSpeedPercentage: 0.3
   _moveAnimationTransitionSpeed: 8
+  volume: 1
 --- !u!114 &1799450263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +299,14 @@ CapsuleCollider:
   m_Height: 0.83717525
   m_Direction: 1
   m_Center: {x: 0, y: 0.5597636, z: 0.089569}
+--- !u!81 &1415991148915241522
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119307395559277825}
+  m_Enabled: 1
 --- !u!1 &8119307395849165359
 GameObject:
   m_ObjectHideFlags: 0

@@ -2811,6 +2811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+--- !u!82 &519002454 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7872422892378604236, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+  m_PrefabInstance: {fileID: 519002453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &557377476
 Mesh:
   m_ObjectHideFlags: 0
@@ -8506,6 +8511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _beingChasedClip: {fileID: 8300000, guid: 4ecd766fe6d768c4392d2ed380759347, type: 3}
+  _playerListener: {fileID: 8119307395822603853}
+  _creatureAudioSource: {fileID: 519002454}
 --- !u!4 &1269289467
 Transform:
   m_ObjectHideFlags: 0
@@ -15475,3 +15482,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+--- !u!81 &8119307395822603853 stripped
+AudioListener:
+  m_CorrespondingSourceObject: {fileID: 1415991148915241522, guid: d6508248c0608344e86dec76f31fdac6, type: 3}
+  m_PrefabInstance: {fileID: 8119307395822603852}
+  m_PrefabAsset: {fileID: 0}
