@@ -81,4 +81,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: fc9180b84af023946a18890716a4acfb, type: 2}
+    material: {fileID: 2100000, guid: f02b4f3bb8a6e994bb9962574831a55c, type: 2}
