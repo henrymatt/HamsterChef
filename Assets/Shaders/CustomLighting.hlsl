@@ -58,7 +58,6 @@ void CalculateCustomLighting_float(float3 Albedo, float3 Normal, float3 GlobalLi
 	d.normalWS = Normal;
 	d.albedo = Albedo;
 	d.globalLighting = GlobalLighting;
-
 	d.worldPosition =  WorldPosition;
 
 	Color = CalculateCustomLighting(d);
