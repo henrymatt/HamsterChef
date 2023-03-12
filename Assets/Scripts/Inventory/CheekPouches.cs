@@ -11,6 +11,8 @@ public class CheekPouches : MonoBehaviour
     [SerializeField] private Transform _itemParent;
     private List<GameObject> _previouslyFocusedGameObjects;
     [SerializeField] private Material _outlineMaterial;
+    [SerializeField] private List<GameObject> _cheekObjects = new List<GameObject>();
+    [SerializeField] private float _cheekSizeMultiplier = 0.1f;
     
     private void Start()
     {
@@ -32,7 +34,9 @@ public class CheekPouches : MonoBehaviour
     
     public bool AttemptAddItem(Item itemToAdd)
     {
-        return _inventory.Add(itemToAdd);
+        bool result = _inventory.Add(itemToAdd);
+        UpdateCheekSize();
+        return result;
     }
 
     public Stack<Item> GetCurrentInventory()
@@ -152,8 +156,18 @@ public class CheekPouches : MonoBehaviour
             _itemParent);
         Rigidbody itemRigidBody = itemGO.GetComponent<Rigidbody>();
         itemRigidBody.AddForce(GetComponent<CharacterMovement>().GetCharacterForwardVector() * 4f, ForceMode.Impulse);
+        UpdateCheekSize();
     }
-    
+
+    private void UpdateCheekSize()
+    {
+        float newSize = 1f + (_inventory.GetQuantity() * _cheekSizeMultiplier);
+        foreach (GameObject eachCheekObject in _cheekObjects)
+        {
+            eachCheekObject.transform.localScale = new Vector3(newSize, newSize, newSize);
+        }
+    }
+
     private void CheckForInventoryDebug()
     {
         if (Input.GetKeyDown(KeyCode.I))

@@ -37,5 +37,6 @@ public class Inventory
 
     public bool HasItems() => _inventory.Count > 0;
     public Stack<Item> GetInventory() => _inventory;
+    public int GetQuantity() => _inventory.Count;
 
 }
