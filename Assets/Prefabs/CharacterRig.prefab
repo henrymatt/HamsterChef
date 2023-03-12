@@ -265,6 +265,11 @@ MonoBehaviour:
   _pickupArea: {fileID: 1568428164}
   _itemParent: {fileID: 0}
   _outlineMaterial: {fileID: 2100000, guid: 6a30d09e0a829ff48b45299b53ad9302, type: 2}
+  _cheekObjects:
+  - {fileID: 5314557856535528271}
+  - {fileID: 5538339057616657815}
+  - {fileID: 6119524949617857492}
+  _cheekSizeMultiplier: 0.1
 --- !u!114 &1124894940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +385,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ea661493780884b9cad7f3b9ae992a, type: 3}
+--- !u!1 &5314557856535528271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4137833033959292377, guid: 81ea661493780884b9cad7f3b9ae992a, type: 3}
+  m_PrefabInstance: {fileID: 8119307395182296726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5538339057616657815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4355456968314544897, guid: 81ea661493780884b9cad7f3b9ae992a, type: 3}
+  m_PrefabInstance: {fileID: 8119307395182296726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6119524949617857492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2612501793893395778, guid: 81ea661493780884b9cad7f3b9ae992a, type: 3}
+  m_PrefabInstance: {fileID: 8119307395182296726}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8172365651591617899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 128212178538996733, guid: 81ea661493780884b9cad7f3b9ae992a, type: 3}

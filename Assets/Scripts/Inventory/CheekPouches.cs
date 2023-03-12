@@ -11,6 +11,8 @@ public class CheekPouches : MonoBehaviour
     [SerializeField] private Transform _itemParent;
     private List<GameObject> _previouslyFocusedGameObjects;
     [SerializeField] private Material _outlineMaterial;
+    [SerializeField] private List<GameObject> _cheekObjects = new List<GameObject>();
+    [SerializeField] private float _cheekSizeMultiplier = 0.1f;
     
     private void Start()
     {
@@ -32,7 +34,9 @@ public class CheekPouches : MonoBehaviour
     
     public bool AttemptAddItem(Item itemToAdd)
     {
-        return _inventory.Add(itemToAdd);
+        bool result = _inventory.Add(itemToAdd);
+        UpdateCheekSize();
+        return result;
     }
 
     public Stack<Item> GetCurrentInventory()
@@ -58,14 +62,14 @@ public class CheekPouches : MonoBehaviour
 
         ClearAllPreviouslyHighlightedInteractableItems();
         // add a material to existing materials
-        Material[] existingMaterials = interactableGameObject.GetComponent<Renderer>().materials;
+        Material[] existingMaterials = interactableGameObject.GetComponentInChildren<Renderer>().materials;
         Material[] materialsPlusOutline = new Material[existingMaterials.Length + 1];
         for (var i = 0; i < existingMaterials.Length; i++)
         {
             materialsPlusOutline[i] = existingMaterials[i];
         }
         materialsPlusOutline[materialsPlusOutline.Length - 1] = _outlineMaterial;
-        interactableGameObject.GetComponent<Renderer>().materials = materialsPlusOutline;
+        interactableGameObject.GetComponentInChildren<Renderer>().materials = materialsPlusOutline;
         
         _previouslyFocusedGameObjects.Add(interactableGameObject);
     }
@@ -77,13 +81,13 @@ public class CheekPouches : MonoBehaviour
         foreach (GameObject previouslyFocusedGameObject in _previouslyFocusedGameObjects)
         {
             // Remove outline material
-            Material[] materialsWithOutline = previouslyFocusedGameObject.GetComponent<Renderer>().materials;
+            Material[] materialsWithOutline = previouslyFocusedGameObject.GetComponentInChildren<Renderer>().materials;
             Material[] materialsWithoutOutline = new Material[materialsWithOutline.Length - 1];
             for (var i = 0; i < materialsWithoutOutline.Length; i++)
             {
                 materialsWithoutOutline[i] = materialsWithOutline[i];
             }
-            previouslyFocusedGameObject.GetComponent<Renderer>().materials = materialsWithoutOutline;
+            previouslyFocusedGameObject.GetComponentInChildren<Renderer>().materials = materialsWithoutOutline;
         }
         _previouslyFocusedGameObjects.Clear();
     }
@@ -152,8 +156,18 @@ public class CheekPouches : MonoBehaviour
             _itemParent);
         Rigidbody itemRigidBody = itemGO.GetComponent<Rigidbody>();
         itemRigidBody.AddForce(GetComponent<CharacterMovement>().GetCharacterForwardVector() * 4f, ForceMode.Impulse);
+        UpdateCheekSize();
     }
-    
+
+    private void UpdateCheekSize()
+    {
+        float newSize = 1f + (_inventory.GetQuantity() * _cheekSizeMultiplier);
+        foreach (GameObject eachCheekObject in _cheekObjects)
+        {
+            eachCheekObject.transform.localScale = new Vector3(newSize, newSize, newSize);
+        }
+    }
+
     private void CheckForInventoryDebug()
     {
         if (Input.GetKeyDown(KeyCode.I))
