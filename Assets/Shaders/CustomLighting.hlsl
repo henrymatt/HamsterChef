@@ -16,7 +16,6 @@ struct CustomLightingData {
 
 #ifndef SHADERGRAPH_PREVIEW
 float3 CustomLightHandling(CustomLightingData d, Light light) {
-	//float3 radiance = float3(clamp(light.color.r, 0, 1), clamp(light.color.g, 0, 1), clamp(light.color.b, 0, 1));
 	float3 radiance = light.color;
 
 	float diffuse = saturate(dot(d.normalWS, light.direction));
