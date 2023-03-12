@@ -2809,12 +2809,24 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6848020264997382852, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+      propertyPath: patrolSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848020264997382852, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
       propertyPath: viewDistance
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6848020264997382852, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
       propertyPath: hearingDistance
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848020264997382852, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+      propertyPath: investigationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848020264997382852, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+      propertyPath: findPatrolLocationFrequency
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6848020264997382854, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
       propertyPath: m_RootOrder
@@ -6696,6 +6708,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1309876089641627755, guid: 370ff2929b425174e829eeced9636bb4, type: 3}
   m_PrefabInstance: {fileID: 1031913631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1037787493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6848020264997382850, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
+  m_PrefabInstance: {fileID: 519002453}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &1040604402
 Mesh:
@@ -10683,6 +10700,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6848020264997382854, guid: ef45b1d6232af8148bdb01d76ccbe568, type: 3}
   m_PrefabInstance: {fileID: 519002453}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1441374778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037787493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199052953d10e4a4daa7f8dee2441205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearingDistance: 90
 --- !u!1 &1464903195
 GameObject:
   m_ObjectHideFlags: 0
@@ -14766,7 +14796,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004655195}
-  m_LocalRotation: {x: 0.115620576, y: 0.000000043601002, z: -0.00000006469022, w: 0.99329346}
+  m_LocalRotation: {x: 0.115620576, y: 0.000000011760719, z: -0.000000045351783, w: 0.99329346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

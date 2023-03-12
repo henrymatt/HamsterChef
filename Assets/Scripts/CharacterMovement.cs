@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
         bool isInput = (hInput != 0 || vInput != 0);
 
         if (isInput && !Input.GetButton("Fire3"))
-            AudioBroadcast.Instance.AddBroadcastedSound(new BroadcastedSound(0.1f, volume, transform.position));
+            AudioBroadcast.Instance.AddBroadcastedSound(new BroadcastedSound("Player Footsteps", 0.1f, volume, transform.position));
 
         Vector3 moveDirection = ((transform.forward * vInput) + (transform.right * hInput));
         if (moveDirection.magnitude > maxSpeed) moveDirection = moveDirection.normalized * maxSpeed;
