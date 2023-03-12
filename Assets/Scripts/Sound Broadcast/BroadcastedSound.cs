@@ -26,4 +26,9 @@ public class BroadcastedSound
     {
         return Vector3.Distance(this.origin, listenerOrigin) * (1 / this.volume);
     }
+
+    public override string ToString()
+    {
+        return name + ": v" + volume + ", d" + duration + ", o" + origin + " ";
+    }
 }

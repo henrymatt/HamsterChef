@@ -16,7 +16,6 @@ public class AudioBroadcastListener : MonoBehaviour
 
     private void FixedUpdate()
     {
-        string soundString = "";
         if (sounds.Count > 0)
         {
             closestSound = null;
@@ -24,7 +23,6 @@ public class AudioBroadcastListener : MonoBehaviour
             foreach (BroadcastedSound sound in sounds)
             {
                 float soundDistance = sound.GetSoundImportance(transform.position);
-                soundString += sound.name + ": " + soundDistance + ", ";
                 if (soundDistance <= hearingDistance)
                 {
                     if (closestSound == null)
@@ -43,11 +41,13 @@ public class AudioBroadcastListener : MonoBehaviour
                 }
             }
         }
-        Debug.Log(soundString);
     }
 
     public BroadcastedSound GetClosestSound()
     {
-        return closestSound;
+        if (sounds.Count > 0)
+            return closestSound;
+        else
+            return null;
     }
 }

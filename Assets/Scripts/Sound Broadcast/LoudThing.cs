@@ -20,7 +20,7 @@ public class LoudThing : MonoBehaviour
         else
         {
             timer = 1f;
-            AudioBroadcast.Instance.AddBroadcastedSound(new BroadcastedSound("Loud boi", volume, 0.1f, transform.position));
+            AudioBroadcast.Instance.AddBroadcastedSound(new BroadcastedSound("Loud boi", 0.1f, volume, transform.position));
         }
     }
 }

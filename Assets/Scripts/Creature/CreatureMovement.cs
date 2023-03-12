@@ -12,13 +12,12 @@ public class CreatureMovement : MonoBehaviour
 
     [SerializeField] private float viewAngle = 90f;
     [SerializeField] private float viewDistance = 5f;
-    [SerializeField] private float hearingDistance = 25f;
     [SerializeField] private float patrolSpeed = 3f;
     [SerializeField] private float chaseSpeed = 10f;
     [SerializeField] private float investigationSpeed = 5f;
 
     [SerializeField] private float findPatrolLocationFrequency = 3f;
-    private float patrolTimer = 0f;
+    public float patrolTimer = 0f;
 
     public CreatureState creatureState = CreatureState.patrolling;
 
@@ -46,42 +45,44 @@ public class CreatureMovement : MonoBehaviour
             patrolTimer = findPatrolLocationFrequency;
         }
 
-        BroadcastedSound closestSound = listener.GetClosestSound();
-        if (closestSound != null)
+        if (creatureState != CreatureState.chasing)
         {
-            if (soundBeingInvesitgated == null)
+            BroadcastedSound closestSound = listener.GetClosestSound();
+            //Debug.Log(closestSound);
+            if (closestSound != null)
             {
-                soundBeingInvesitgated = closestSound;
-                creatureState = CreatureState.investigating;
-                navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
-            }
-            else if (soundBeingInvesitgated.GetSoundImportance(transform.position) < closestSound.GetSoundImportance(transform.position))
-            {
-                soundBeingInvesitgated = closestSound;
-                creatureState = CreatureState.investigating;
-                navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
-            }
-            else
-            {
-                //nothing
+                if (soundBeingInvesitgated == null)
+                {
+                    soundBeingInvesitgated = closestSound;
+                    navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
+                    SwitchToInvestigate();
+                }
+                else if (soundBeingInvesitgated.GetSoundImportance(transform.position) < closestSound.GetSoundImportance(transform.position))
+                {
+                    soundBeingInvesitgated = closestSound;
+                    navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
+                    SwitchToInvestigate();
+                }
+                else
+                {
+                    //nothing
+                }
             }
         }
 
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
-            if (creatureState == CreatureState.patrolling || creatureState == CreatureState.investigating)
+            if (creatureState == CreatureState.patrolling)
                 patrolTimer -= Time.deltaTime;
             else if (creatureState == CreatureState.chasing && !canSeePlayer)
             {
-                navMeshAgent.speed = patrolSpeed;
-
                 EventHandler.CallDidCreatureStopChasingEvent();
 
-                creatureState = CreatureState.patrolling;
+                SwitchToPatrol();
             }
             else if (creatureState == CreatureState.investigating)
             {
-                soundBeingInvesitgated = null;
+                SwitchToPatrol();
             }
         }
     }
@@ -101,14 +102,35 @@ public class CreatureMovement : MonoBehaviour
                     navMeshAgent.SetDestination(player.transform.position);
                     EventHandler.CallDidCreatureBeginChasingEvent();
 
-                    creatureState = CreatureState.chasing;
-                    navMeshAgent.speed = chaseSpeed;
-                    
+                    SwitchToChase();
                 }
             }
         }
     }
+    private void SwitchToInvestigate()
+    {
+        creatureState = CreatureState.investigating;
+        navMeshAgent.SetDestination(soundBeingInvesitgated.origin);
+        navMeshAgent.speed = investigationSpeed;
+    }
+
+    private void SwitchToPatrol()
+    {
+        patrolTimer = 0f;
+        soundBeingInvesitgated = null;
+        creatureState = CreatureState.patrolling;
+        navMeshAgent.speed = patrolSpeed;
+    }
+
+    private void SwitchToChase()
+    {
+        soundBeingInvesitgated = null;
+        creatureState = CreatureState.chasing;
+        navMeshAgent.speed = chaseSpeed;
+    }
 }
+
+
 
 public enum CreatureState
 {
