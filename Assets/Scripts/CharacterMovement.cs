@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _moveAnimationTransitionSpeed = 8f;
     private bool _canMove = true;
 
+    public float volume = 1f;
 
     public void DisableMovement() => _canMove = false;
     public void EnableMovement() => _canMove = true;
@@ -56,6 +57,9 @@ public class CharacterMovement : MonoBehaviour
         float vInput = Input.GetAxisRaw("Vertical");
 
         bool isInput = (hInput != 0 || vInput != 0);
+
+        if (isInput && !Input.GetButton("Fire3"))
+            AudioBroadcast.Instance.AddBroadcastedSound(new BroadcastedSound(0.1f, volume, transform.position));
 
         Vector3 moveDirection = ((transform.forward * vInput) + (transform.right * hInput));
         if (moveDirection.magnitude > maxSpeed) moveDirection = moveDirection.normalized * maxSpeed;
