@@ -58,14 +58,14 @@ public class CheekPouches : MonoBehaviour
 
         ClearAllPreviouslyHighlightedInteractableItems();
         // add a material to existing materials
-        Material[] existingMaterials = interactableGameObject.GetComponent<Renderer>().materials;
+        Material[] existingMaterials = interactableGameObject.GetComponentInChildren<Renderer>().materials;
         Material[] materialsPlusOutline = new Material[existingMaterials.Length + 1];
         for (var i = 0; i < existingMaterials.Length; i++)
         {
             materialsPlusOutline[i] = existingMaterials[i];
         }
         materialsPlusOutline[materialsPlusOutline.Length - 1] = _outlineMaterial;
-        interactableGameObject.GetComponent<Renderer>().materials = materialsPlusOutline;
+        interactableGameObject.GetComponentInChildren<Renderer>().materials = materialsPlusOutline;
         
         _previouslyFocusedGameObjects.Add(interactableGameObject);
     }
@@ -77,13 +77,13 @@ public class CheekPouches : MonoBehaviour
         foreach (GameObject previouslyFocusedGameObject in _previouslyFocusedGameObjects)
         {
             // Remove outline material
-            Material[] materialsWithOutline = previouslyFocusedGameObject.GetComponent<Renderer>().materials;
+            Material[] materialsWithOutline = previouslyFocusedGameObject.GetComponentInChildren<Renderer>().materials;
             Material[] materialsWithoutOutline = new Material[materialsWithOutline.Length - 1];
             for (var i = 0; i < materialsWithoutOutline.Length; i++)
             {
                 materialsWithoutOutline[i] = materialsWithOutline[i];
             }
-            previouslyFocusedGameObject.GetComponent<Renderer>().materials = materialsWithoutOutline;
+            previouslyFocusedGameObject.GetComponentInChildren<Renderer>().materials = materialsWithoutOutline;
         }
         _previouslyFocusedGameObjects.Clear();
     }
